@@ -130,6 +130,8 @@ def parellel_convert_geometry_to_enu(
 ):
     """
     uses multi-processing pool to convert a list of geometries
+    in testing, this function is not as effective as the single-process version
+    due to its resource consumption in process communication
     """
     with Pool(processes=cpu_count()) as pool:
         converted = pool.map(convert_func, [(geom, ref_lon, ref_lat) for geom in geoms])
